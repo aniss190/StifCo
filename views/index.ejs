@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%=title%></title>
+        <script type="text/javascript" src="/../js/jquery-1.10.2.min.js"></script>
+        <link rel="stylesheet" href="/../css/style.css">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Sofia' rel='stylesheet' type='text/css'>
+    </head>
+<body>
+<span class="stifco_logo"></span>
+  <form id="formConnexion" method="post" action="" class="bloc">
+    <h2>Connexion</h2>
+    <input name="codeNavigo" placeholder="Numero Navigo" type="text"></input>
+    <input id="pw" name="password" placeholder="Mot de passe" type="password"></input>
+    <input class="animated" type="button" value="Connexion" onclick="connexion()"></input>
+    <a class="register" href="/register">S'inscrire</a>
+  </form>
+<div id="fail" class="bloc" style="display: none;">
+    <p>Nom d'utilisateur ou mot de passe incorrect !</p>
+    <a href="/">Retourner à la page de connexion.</a>
+</div>
+<script>
+    function connexion(){
+       
+       $.ajax({
+        
+        url:"/",
+        type:"post",
+        data:$("#formConnexion").serialize(),
+        success:function(res){
+           if (res == "Fail") {
+                $("#formConnexion").slideUp(400);
+                $("#fail").slideDown(800);
+                $("#fail").style.display = "block";
+                return false;
+           }
+           else {
+                window.location.href = '/';
+           }
+        },
+        error:function(xhr, status, error){
+            
+            console.log(xhr.responseText);
+            var err = '';
+            $.each(JSON.parse(xhr.responseText) , function(i, item) {
+                 // err +='<li>'+item.msg+'</li>';
+                 err += item.msg + '\n';
+            });
+            alert(err);
+            // $(".err-area").html(err);    
+            /*$("#formInscription").slideUp(400);
+            $("#fail").slideDown(800);
+            $("#fail").style.display = "block";*/
+            return false;
+        }
+        
+       });
+    }
+</script>
+</body>
+</html>

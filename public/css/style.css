@@ -1,0 +1,196 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  text-align: center;
+  background: ##fff;
+  color: #435160;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.stifco_logo {
+  background: url("../images/StifCo_Banniere.png");
+  background-repeat: no-repeat; 
+  display: inline-block; 
+  width: 993px; 
+  height: 176px;
+}
+
+@media only screen and (max-width: 993px) {
+  .stifco_logo {
+    background: url("../images/StifCo_Banniere_Mini.png");
+    background-repeat: no-repeat; 
+    display: inline-block; 
+    width: 250px; 
+    height: 176px;
+  }
+}
+
+h2 {
+  color: #69b7e8;
+  font-family: 'Trebuchet MS';
+  font-size: 15px;
+  font-weight: bold;
+  font-size: 3.6em;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+a {
+  color: #69b7e8;
+  text-decoration: none;
+}
+
+.bloc {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 20px;
+  width: 350px;
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  margin-left: -175px;
+  color: #fff;
+}
+
+input[type="text"], input[type="password"], select{
+    width: 350px;
+    padding: 30px 0px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #f47216;
+    outline: none;
+    color: #fff;
+    font-size: 16px;
+}
+
+select {
+  margin-top: 20px;
+  padding: 0;
+}
+
+select option {
+  color: #000;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+
+label{
+  display: block;
+  position: absolute;
+  margin-right: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: transparent;
+  content: "";
+  transition: all .3s ease-in-out;
+  cursor: pointer;
+  border: 3px solid #435160;
+}
+
+/*#agree:checked ~ label[for=agree]
+  background: #435160*/
+
+input[type="button"], a.bouton{
+  display: block;
+  background: #f47216;
+  margin-top: 20px;
+  border: 0;
+  width: 350px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background .3s ease-in-out;
+}
+
+
+ input[type="submit"]:hover{
+    background: #69b7e8;
+}
+
+.register {
+  margin-top: 10px;
+  display: block;
+  font-size: 1em;
+  text-align: center;
+  font-weight: bold;
+}
+ 
+ .register:hover {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    color: #6D7781;
+}
+
+.agree {
+  padding: 30px 0px;
+  font-size: 12px;
+  text-indent: 25px;
+  line-height: 15px;
+}
+
+::-webkit-input-placeholder {
+   color: #fff;
+   opacity: 0.5;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #fff;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #fff;  
+}
+
+:-ms-input-placeholder {  
+   color: #fff;  
+}
+
+.animated{
+  animation-fill-mode: both;
+  animation-duration: 1s;
+}
+
+span.add-on {
+  background-color: #f47216;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  border-radius: 5px;
+  color: #fff;
+}
+
+table
+{
+    border-collapse: collapse;
+  text-align: center;
+}
+
+caption {
+  margin-bottom: 10px;
+}
+
+td, th /* Mettre une bordure sur les td ET les th */
+{
+  padding: 3px;
+    border: 3px solid #f47216;
+}
+
+.blocL {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 20px;
+  position: absolute;
+  top: 200px;
+  left: 22%;
+  color: #fff;
+}

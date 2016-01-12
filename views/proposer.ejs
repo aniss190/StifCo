@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%=title%></title>
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/../css/bootstrap-datetimepicker.min.css">
+        <link rel="stylesheet" href="/../css/style.css">
+        <script type="text/javascript" src="/../js/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="/../js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/../js/bootstrap-datetimepicker.min.js"></script>
+    </head>
+<body>
+<span class="stifco_logo"></span>
+<form method="post" class="bloc" action="" id="formProposition">
+    <h2>Proposer un transport</h2>
+    <input name="semaine" placeholder="Numéro de la semaine" type="text">
+    <input name="nbPassagers" placeholder="Nombre de passagers" type="text">
+    <div class="datetimepicker" class="input-append">
+        <input data-format="hh:mm:ss" type="text" name="hDepart" placeholder="Heure de départ"></input>
+        <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+    </div>
+    <div class="datetimepicker" class="input-append">
+        <input data-format="hh:mm:ss" type="text" name="hRetour" placeholder="Heure de retour"></input>
+        <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+    </div>
+    <select name="commune">
+        <option value="">Selectionnez votre ville de départ</option>
+        <% for(var i = 0;i < commune.length;i++) { %>
+            <option value="<%=commune[i].id%>"><%=commune[i].nom%></option>
+        <% } %> 
+    </select>
+    <select name="gare">
+        <option value="">Selectionnez votre gare d'arrivée</option>
+        <% for(var j = 0;j < gare.length;j++) { %>
+            <option value="<%=gare[j].id%>"><%=gare[j].libelle%></option>
+        <% } %> 
+    </select>
+    <input type="button" value="Effectuer la proposition" onClick="proposition()">
+    <a class="register" href="/">Retour</a>
+</form>
+<div id="success" class="bloc" style="display: none;">
+    <p>Proposition effectué.</p>
+    <a href="/">Retourner à la page d'accueil.</a>
+</div>
+<div id="fail" class="bloc" style="display: none;">
+    <p>Erreur !!!!!</p>
+    <a href="/">Retourner à la page d'accueil</a>
+</div>
+<script>
+    $(function() {
+        $('.datetimepicker').datetimepicker({
+            pickDate: false
+        });
+      });
+
+    function proposition(){
+       
+       $.ajax({
+        
+        url:"/proposer",
+        type:"post",
+        data:$("#formProposition").serialize(),
+        success:function(res){
+            
+            // window.location.reload();
+            $("#formProposition").slideUp(400);
+            $("#success").slideDown(800);
+            $("#success").style.display = "block";
+            return false;
+        },
+        error:function(xhr, status, error){
+            
+            console.log(xhr.responseText);
+            var err = '';
+            $.each(JSON.parse(xhr.responseText) , function(i, item) {
+                 // err +='<li>'+item.msg+'</li>';
+                 err += item.msg + '\n';
+            });
+            alert(err);
+            // $(".err-area").html(err);    
+            /*$("#formInscription").slideUp(400);
+            $("#fail").slideDown(800);
+            $("#fail").style.display = "block";*/
+            return false;
+        }
+        
+       });
+    }
+</script>
+</body>
+</html>

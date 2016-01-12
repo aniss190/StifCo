@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%=title%></title>
+        <script type="text/javascript" src="/../js/jquery-1.10.2.min.js"></script>
+        <link rel="stylesheet" href="/../css/style.css">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Sofia' rel='stylesheet' type='text/css'>
+    </head>
+<body>
+<span class="stifco_logo"></span>
+  <div class="blocL">
+  <center>
+	<table>
+		<caption><Strong><U>Voici les propositions de trajet disponible :</U></Strong></caption>
+
+		<tr>
+			<th>Offreur</th>
+			<th>Semaine</th>
+			<th>Nombre de passagers</th>
+			<th>Départ</th>
+			<th>Retour</th>
+			<th>Commune de départ</th>
+			<th>Gare d'arrivé</th>
+			<th style="color: red;">Reserver ?</th>
+		</tr>
+		
+		               
+        <% if(data.length){ 
+                        
+         for(var i = 0;i < data.length;i++) { %>
+		<tr>
+			<td><%=data[i].idOffreur%></td>
+			<td><%=data[i].semaine%></td>
+			<td><%=data[i].nbPassagers%></td>
+			<td><%=data[i].hDepart%></td>
+			<td><%=data[i].hRetour%></td>
+			<td><%=data[i].idGare%></td>
+			<td><%=data[i].idCommune%></td>			
+			<td><a style="color: red;" href="">Réserver</a></td>
+			
+		</tr>
+		<% }
+    
+		}else{ %>
+         <tr>
+            <td colspan="8">Aucun trajet disponible</td>
+         </tr>
+		<% } %>
+		</table>
+		</br>
+		<a href="/">Retourner à la page d'accueil</a>
+	</center>
+  </div>
+</body>
+</html>

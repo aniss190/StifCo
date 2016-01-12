@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%=title%></title>
+        <link rel="stylesheet" href="/../css/style.css">
+        <script type="text/javascript" src="/../js/jquery-1.10.2.min.js"></script>
+    </head>
+<body>
+<span class="stifco_logo"></span>
+<form method="post" class="bloc" action="" id="formInscription">
+    <h2>Inscription</h2>
+    <input name="codeNavigo" placeholder="Numéro Navigo" type="text">
+    <input name="password" placeholder="Mot de passe" type="password">
+    <input name="nom" placeholder="Nom" type="text">
+    <input name="prenom" placeholder="Prénom" type="text">
+    <input name="mail" placeholder="Adresse mail" type="text">
+    <select name="cp">
+        <option value="">Sélectionnez votre code postal</option>
+        <% for(var i = 0;i < rows.length;i++) { %>
+            <option value="<%=rows[i].codePostal%>"><%=rows[i].codePostal%></option>
+        <% } %> 
+    </select>
+    <input type="button" value="Sinscrire" onClick="inscription()">
+    <a class="register" href="/">Se connecter</a>
+</form>
+<div id="success" class="bloc" style="display: none;">
+    <p>Vous vous êtes bien inscrit.</p>
+    <a href="/">Retourner à la page de connexion.</a>
+</div>
+<script>
+    function inscription(){
+       
+       $.ajax({
+        
+        url:"/register",
+        type:"post",
+        data:$("#formInscription").serialize(),
+        success:function(res){
+
+            // window.location.reload();
+            $("#formInscription").slideUp(400);
+            $("#success").slideDown(800);
+            $("#success").style.display = "block";
+            return false;
+        },
+        error:function(xhr, status, error){
+            
+            console.log(xhr.responseText);
+            var err = '';
+            $.each(JSON.parse(xhr.responseText) , function(i, item) {
+                 // err +='<li>'+item.msg+'</li>';
+                 err += item.msg + '\n';
+            });
+            alert(err);
+            // $(".err-area").html(err);    
+            /*$("#formInscription").slideUp(400);
+            $("#fail").slideDown(800);
+            $("#fail").style.display = "block";*/
+            return false;
+        }
+        
+       });
+    }
+</script>
+</body>
+</html>
